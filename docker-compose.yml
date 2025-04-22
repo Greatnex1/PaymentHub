@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  # Spring Boot application
+  springboot-app:
+    build: .
+    container_name: springboot-app
+    ports:
+      - "8081:8085"  # Adjust as needed: host:container
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-db:5432/paystack
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD= blessed
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - SPRING_JPA_DATABASE_PLATFORM=org.hibernate.dialect.PostgreSQLDialect
+    depends_on:
+      - postgres-db
+    networks:
+      - app-network
+
+  # PostgreSQL database
+  postgres-db:
+    image: postgres:15
+    container_name: postgres-db
+    environment:
+      POSTGRES_DB: paystack
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: blessed
+    ports:
+      - "5431:5432"  # Expose PostgreSQL on port 5432
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
