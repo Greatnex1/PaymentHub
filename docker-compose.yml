@@ -6,7 +6,7 @@ services:
     build: .
     container_name: springboot-app
     ports:
-      - "8081:8085"  # Adjust as needed: host:container
+      - "8165:8170"  # Adjust as needed: host:container
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-db:5432/paystack
       - SPRING_DATASOURCE_USERNAME=postgres
