@@ -1,0 +1,25 @@
+resilience4j:
+  retry:
+    instances:
+      paystackRetry:
+        max-attempts: 3
+        wait-duration: 2s
+
+  circuitbreaker:
+    instances:
+      paystackCircuit:
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 10s
+        permitted-number-of-calls-in-half-open-state: 2
+        sliding-window-size: 5
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+
+  endpoint:
+    health:
+      show-details: always
