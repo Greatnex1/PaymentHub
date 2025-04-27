@@ -20,8 +20,8 @@ public class PaystackTransaction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    //    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @Column(name = "customer_id")
+//    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "customer_id")
     private String customerId;
 
     @Column(name = "reference")
@@ -55,5 +55,5 @@ public class PaystackTransaction {
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_on", updatable = false, nullable = false)
-    private Date createdOn;
+    private Date dateCreated;
 }
